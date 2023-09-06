@@ -1,7 +1,12 @@
 # pyStats
 
 
-support for confidence intervals, 1 sample t tests and welch test.
+support for:
+- mean confidence interval
+- variance confidence interval
+- 1 sample t test
+- 2 sample t test (welch test)
+- csv to 2d list conversion (for compatability with the library)
 
 adding support for paired t test, anova, pairwise comparisons, and optional graphs
 
