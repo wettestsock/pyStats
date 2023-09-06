@@ -13,7 +13,7 @@ also adheres to the naming convention of the functions, as well as the style of 
 
 please make sure you have the following libraries installed:
 
-- maplotlib
+- matplotlib
 - numpy
 - scipy
 - pandas
