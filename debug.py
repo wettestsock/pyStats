@@ -13,6 +13,7 @@ data7 = s.pd.read_csv("anova.csv")
 data8 = s.pd.read_csv("anova2.csv")
 anova1 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3], [1.1,0.8,2.3]]
 anova2 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9]]
+anova3 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9,2.2]]
   
 s.VIntervalRaw(data1, 0.95) # (4.4711, 25.6849)
 s.MIntervalRaw(data1, 0.95) # (90.3945, 93.7722)
@@ -28,8 +29,12 @@ s.MTestPRaw(data1, "!=", data6)
 print(s.csvFileToList("anova2.csv"))
 print(s.dfToList(data7))
 
+s.AOne(anova2)
 
-print(s.stats.tukey_hsd(*s.csvFileToList("anova.csv")))
+
+s.PComparison(anova3, alpha = 0.05)
+
+#anova3 data:
 #Comparison  Statistic  p-value  Lower CI  Upper CI
 # (0 - 1)      4.426     0.540    -5.462    14.313
 # (0 - 2)     15.512     0.001     5.915    25.110
@@ -37,5 +42,3 @@ print(s.stats.tukey_hsd(*s.csvFileToList("anova.csv")))
 # (1 - 2)     11.087     0.026     1.056    21.117
 # (2 - 0)    -15.512     0.001   -25.110    -5.915
 # (2 - 1)    -11.087     0.026   -21.117    -1.056
-
-s.anovaOne(anova1)

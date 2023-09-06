@@ -108,7 +108,7 @@ def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
     if (pVal<alpha):
         print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we have do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do NOT have convincing evidence that...")
     print("---------------------\n")
 
 def MTest2SRaw(data1, comparison, data2, alpha=0.05) :
@@ -153,7 +153,7 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
     if (pVal<alpha):
         print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do NOT have convincing evidence that...")
     print("---------------------\n")
 
 
@@ -195,16 +195,17 @@ def VIntervalData(Svar, df, confidence):
 
 #ANOVA AND PAIRWISE -------------
 
-def anovaOne(twoDimensionalList, alpha = 0.05):
+def AOne(twoDimensionalList, alpha = 0.05):
     #one way anova , not rly necessary (already included) but is nice to have 
     #note: anova can be used for a 2 sample test, so the exception is handled in the interpretations
     #i code in the interpretation
     fStat, pVal = stats.f_oneway(*twoDimensionalList)
     null, alternate, final = "= ... =", "At least two treatment means differ", " the mean difference between at least two populations is not 0."
-    two = len(twoDimensionalList)==2
-    if two:
+    if len(twoDimensionalList)==2:
         null, alternate, final = "=", "m1 != m2", "..."
     
+    fStat = round(fStat,ROUND)
+    pVal = round(pVal, ROUND)
     
     print("---------------------")
     print(f"   ONE-WAY ANOVA TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t     H0:\tm1 {null} m2\n   \t     Ha:\t{alternate}")
@@ -212,9 +213,36 @@ def anovaOne(twoDimensionalList, alpha = 0.05):
     if (pVal<alpha):
         print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that{final}")
     else:
-        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do not have convincing evidence that{final}")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do NOT have convincing evidence that{final}")
     print("---------------------\n")
 
+
+def PComparison(twoDimensionalList, alpha =0.05):
+    #pairwise comparison using tukey method
+    #works for unequal sample sizes too
+    
+    result = stats.tukey_hsd(*twoDimensionalList)
+    result.confidence_interval(confidence_level = 1-alpha)
+    conf = result.confidence_interval(confidence_level = 1-alpha)
+    
+    print("---------------------")
+    print(f"   PAIRWISE COMPARISON TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n{result}")
+    
+    for ((i,j), pVal) in npy.ndenumerate(result.pvalue):
+        if i==j:
+            continue
+        print(f" ({i} - {j}): ", end = "")
+        if pVal < alpha and 0 not in npy.arange(conf.low[i,j], conf.high[i,j]):
+            print(f"REJ the null ({i} = {j}). Therefore DIFFERENT, alt is true ({i} != {j})")
+        else:
+            print(f"FTR the null ({i} = {j}). Therefore NO DIFFERENCE, alt is false ({i} != {j})")
+    print("---------------------\n")
+        
+        
+        
+
+
+    
 
 
 
