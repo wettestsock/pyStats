@@ -102,7 +102,7 @@ def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
     SE = round(SE, ROUND)
     
     
-    print(f"   1 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t      H0:\tmu = {popMean}\n   \t      Ha:\tmu {sign} {popMean}")
+    print(f"   1 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t     H0:\tmu = {popMean}\n   \t     Ha:\tmu {sign} {popMean}")
     print(f"             df:\t{n-1}\n standard error:\t{SE}\n    t-statistic:\t{tStat}\n        p-value:\t{pVal}")
 
     if (pVal<alpha):
@@ -148,12 +148,12 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
     pVal = round(pVal, ROUND)
     SE = round(SE, ROUND)
     
-    print(f"   WELCH'S 2 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t      H0:\tm1 = m2\n   \t      Ha:\tm1 {sign} m2")
+    print(f"   WELCH'S 2 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t     H0:\tm1 = m2\n   \t     Ha:\tm1 {sign} m2")
     print(f"             df:\t{df}\n standard error:\t{SE}\n    t-statistic:\t{tStat}\n        p-value:\t{pVal}")
     if (pVal<alpha):
         print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we have do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do not have convincing evidence that...")
     print("---------------------\n")
 
 
@@ -192,6 +192,33 @@ def VIntervalData(Svar, df, confidence):
     print("---------------------\n")
 
 #----------------------------------
+
+#ANOVA AND PAIRWISE -------------
+
+def anovaOne(twoDimensionalList, alpha = 0.05):
+    #one way anova , not rly necessary (already included) but is nice to have 
+    #note: anova can be used for a 2 sample test, so the exception is handled in the interpretations
+    #i code in the interpretation
+    fStat, pVal = stats.f_oneway(*twoDimensionalList)
+    null, alternate, final = "= ... =", "At least two treatment means differ", " the mean difference between at least two populations is not 0."
+    two = len(twoDimensionalList)==2
+    if two:
+        null, alternate, final = "=", "m1 != m2", "..."
+    
+    
+    print("---------------------")
+    print(f"   ONE-WAY ANOVA TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t     H0:\tm1 {null} m2\n   \t     Ha:\t{alternate}")
+    print(f"    f-statistic:\t{fStat}\n        p-value:\t{pVal}")
+    if (pVal<alpha):
+        print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that{final}")
+    else:
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do not have convincing evidence that{final}")
+    print("---------------------\n")
+
+
+
+
+#-----------------------------
 
 #OTHER FUNCTIONS ---------------
 

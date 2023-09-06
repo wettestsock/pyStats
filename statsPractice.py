@@ -24,9 +24,9 @@ anova2 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9]]
 #anovaDF = pd.DataFrame({'sample 1': anova1[0], 'sample 2': anova1[1], 'sample 3': anova1[2]})
 
 
-#final = []
-#final.append([])
-#data3 = pd.read_csv("anova.csv").values.tolist()
+final = []
+final.append([])
+data3 = pd.read_csv("anova.csv").values.tolist()
 #print(data3)
 
 
@@ -94,9 +94,11 @@ print(2*(1-stats.f.cdf(1.083646869,24,24))) # two tail f test
 #f.oneway method. only gives fstatistic and p value
 fStat, pVal = stats.f_oneway(*anova1)  #asterisk specifies unlimited args, can input a list and itll open lists within that list
 print(f"f stat:{fStat} \t p-value: {pVal}")
-print(f"| {stats.tukey_hsd(*anova1)}")
-print(data1.values.tolist())
+print(stats.tukey_hsd(*anova2))
+#print(data1.values.tolist())
 #stats.false_discovery_control()
+
+
 
 
 
