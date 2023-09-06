@@ -72,10 +72,12 @@ def MTestPData(SmeanDiff, stdDiff, comparison, n, alpha = 0.05):
     print("---------------------\n")
 
 def MTest1SRaw(data, comparison, popMean=0, alpha=0.05) :
+    #1 sample t test raw data
     MTest1SData(npy.mean(data), comparison, popMean, npy.std(data), len(data), alpha)
     #print(stats.ttest_1samp(a = data, popmean = popMean, alternative= comp))
 
 def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
+    #1 sample t test
     SE = std/m.sqrt(n)
     tStat = (Smean-popMean)/SE   
     pVal = stats.t.cdf(tStat, n-1)
@@ -110,10 +112,12 @@ def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
     print("---------------------\n")
 
 def MTest2SRaw(data1, comparison, data2, alpha=0.05) :
+    # 2 sample t test raw data
     MTest2SData(npy.mean(data1), npy.std(data1), len(data1), comparison, npy.mean(data2), npy.std(data2), len(data2), alpha)
             
 
 def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
+    #2 sample t test
     #df = (pow(pow(std1,2)/n1 + pow(std2,2)/n2 ,2))/((1/(n1-1))*(pow(std1,2)/n1)+(1/(n2-1))*(pow(std2,2)/n2))   #??? 
     SE1 = std1*std1/n1
     SE2 = std2*std2/n2
@@ -161,9 +165,11 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
 #INTERVALS -----------------------
 
 def MIntervalRaw(data, confidence) :
+    #raw data mean interval 
     MIntervalData(npy.mean(data), npy.std(data), len(data), confidence)
 
 def MIntervalData(Smean, std, n, confidence):
+    #mean interval
     #ME = stats.t.ppf(confidence/2, n-1 ) #ppf -> inverse cdf (cumulative density function )
     lBound, uBound = stats.norm.interval(confidence = confidence, loc = Smean, scale = std/m.sqrt(n)) # steps :
     # stats.norm.interval , returns a tuple
@@ -174,9 +180,11 @@ def MIntervalData(Smean, std, n, confidence):
     print("---------------------\n")
 
 def VIntervalRaw(data, confidence) :
+    #variance interval with raw data
     VIntervalData(npy.var(data), len(data)-1, confidence)
 
 def VIntervalData(Svar, df, confidence):
+    #variance interval 
     lBound = (df*Svar)/stats.chi2.ppf(1-(1-confidence)/2, df)
     uBound = (df*Svar)/stats.chi2.ppf(((1-confidence)/2), df)
     print("---------------------")
@@ -186,6 +194,31 @@ def VIntervalData(Svar, df, confidence):
 #----------------------------------
 
 #OTHER FUNCTIONS ---------------
+
+
+def csvFileToList(relativePath):
+    #quick conversion from csv file to list
+    return dfToList(pd.read_csv(relativePath))
+
+def dfToList(DataFrame): 
+    #DataFrame object to a List (not dictionary)
+    #essential for anova and whatever
+    data = DataFrame.values.tolist()
+    final = []
+    final.append([])
+    key = data[0][0]
+    value = 0
+    for rowName, val in data:
+        if key != rowName:
+            value = value +1
+            final.append([])
+            key = rowName
+      
+        
+        final[value] += [val] 
+    return final
+    
+
 
 #idk not yet 
 
