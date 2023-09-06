@@ -53,7 +53,7 @@ def MTestPData(SmeanDiff, stdDiff, comparison, n, alpha = 0.05):
         pVal = 2*min(pVal, 1-pVal)
         
     else:
-        print("|   No parameter or wrong comparison. Assumed \"not equal\"\n|   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n|   ")
+        print("   No parameter or wrong comparison. Assumed \"not equal\"\n   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n   ")
         pVal = 2*min(pVal, 1-pVal)
         
     
@@ -62,13 +62,13 @@ def MTestPData(SmeanDiff, stdDiff, comparison, n, alpha = 0.05):
     SE = round(SE, ROUND)
     
     
-    print(f"|   PAIRED T TEST\n|   Rounded to the {ROUND}{POSITION} decimal.\n|   \t      H0:\tmd = 0\n|   \t      Ha:\tmu {sign} 0")
-    print(f"|             df:\t{n-1}\n| standard error:\t{SE}\n|    t-statistic:\t{tStat}\n|        p-value:\t{pVal}")
+    print(f"   PAIRED T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t      H0:\tmd = 0\n   \t      Ha:\tmu {sign} 0")
+    print(f"             df:\t{n-1}\n standard error:\t{SE}\n    t-statistic:\t{tStat}\n        p-value:\t{pVal}")
 
     if (pVal<alpha):
-        print(f"|   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n|   Therefore, we have convincing evidence that...")
+        print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"|   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n|   Therefore, we have do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we have do not have convincing evidence that...")
     print("---------------------\n")
 
 def MTest1SRaw(data, comparison, popMean=0, alpha=0.05) :
@@ -93,7 +93,7 @@ def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
         pVal = 2*min(pVal, 1-pVal)
         
     else:
-        print("|   No parameter or wrong comparison. Assumed \"not equal\"\n|   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n|   ")
+        print("   No parameter or wrong comparison. Assumed \"not equal\"\n   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n   ")
         pVal = 2*min(pVal, 1-pVal)
         
     
@@ -102,13 +102,13 @@ def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
     SE = round(SE, ROUND)
     
     
-    print(f"|   1 SAMPLE T TEST\n|   Rounded to the {ROUND}{POSITION} decimal.\n|   \t      H0:\tmu = {popMean}\n|   \t      Ha:\tmu {sign} {popMean}")
-    print(f"|             df:\t{n-1}\n| standard error:\t{SE}\n|    t-statistic:\t{tStat}\n|        p-value:\t{pVal}")
+    print(f"   1 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t      H0:\tmu = {popMean}\n   \t      Ha:\tmu {sign} {popMean}")
+    print(f"             df:\t{n-1}\n standard error:\t{SE}\n    t-statistic:\t{tStat}\n        p-value:\t{pVal}")
 
     if (pVal<alpha):
-        print(f"|   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n|   Therefore, we have convincing evidence that...")
+        print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"|   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n|   Therefore, we have do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we have do not have convincing evidence that...")
     print("---------------------\n")
 
 def MTest2SRaw(data1, comparison, data2, alpha=0.05) :
@@ -139,7 +139,7 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
         pVal = 2*min(pVal, 1-pVal)
         
     else:
-        print("|   No parameter or wrong comparison. Assumed \"not equal\"\n|   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n|   ")
+        print("   No parameter or wrong comparison. Assumed \"not equal\"\n   Acceptable inputs: \"less\", \"greater\", or \"not equal\".\n   ")
         pVal = 2*min(pVal, 1-pVal)
         
     
@@ -148,12 +148,12 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
     pVal = round(pVal, ROUND)
     SE = round(SE, ROUND)
     
-    print(f"|   WELCH'S 2 SAMPLE T TEST\n|   Rounded to the {ROUND}{POSITION} decimal.\n|   \t      H0:\tm1 = m2\n|   \t      Ha:\tm1 {sign} m2")
-    print(f"|             df:\t{df}\n| standard error:\t{SE}\n|    t-statistic:\t{tStat}\n|        p-value:\t{pVal}")
+    print(f"   WELCH'S 2 SAMPLE T TEST\n   Rounded to the {ROUND}{POSITION} decimal.\n   \t      H0:\tm1 = m2\n   \t      Ha:\tm1 {sign} m2")
+    print(f"             df:\t{df}\n standard error:\t{SE}\n    t-statistic:\t{tStat}\n        p-value:\t{pVal}")
     if (pVal<alpha):
-        print(f"|   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n|   Therefore, we have convincing evidence that...")
+        print(f"   We reject the null because the p-value of {pVal} is less than a = {alpha}.\n   Therefore, we have convincing evidence that...")
     else:
-        print(f"|   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n|   Therefore, we have do not have convincing evidence that...")
+        print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we have do not have convincing evidence that...")
     print("---------------------\n")
 
 
@@ -176,7 +176,7 @@ def MIntervalData(Smean, std, n, confidence):
     # assigns to lBound and uBound
     
     print("---------------------")
-    print(f"|   We are {int(100*confidence)}% confident that the the true mean is between {round(lBound, ROUND)} and {round(uBound, ROUND)}.")
+    print(f"   We are {int(100*confidence)}% confident that the the true mean is between {round(lBound, ROUND)} and {round(uBound, ROUND)}.")
     print("---------------------\n")
 
 def VIntervalRaw(data, confidence) :
@@ -188,7 +188,7 @@ def VIntervalData(Svar, df, confidence):
     lBound = (df*Svar)/stats.chi2.ppf(1-(1-confidence)/2, df)
     uBound = (df*Svar)/stats.chi2.ppf(((1-confidence)/2), df)
     print("---------------------")
-    print(f"|   We are {int(100*confidence)}% confident that the true variance is between {round(lBound,ROUND)} and {round(uBound,ROUND)}.")
+    print(f"   We are {int(100*confidence)}% confident that the true variance is between {round(lBound,ROUND)} and {round(uBound,ROUND)}.")
     print("---------------------\n")
 
 #----------------------------------
