@@ -46,7 +46,7 @@ def MTestPData(SmeanDiff, stdDiff, comparison, n, alpha = 0.05):
     print("---------------------")
     if comparison== "less" or comparison == "<":
         sign = "<"
-    elif comparison == "greater" or comparison == ">":
+    elif comparison =="greater" or comparison == ">":
         pVal = 1- pVal
         sign = ">"
     elif comparison == "not equal" or comparison == "!=": 
