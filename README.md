@@ -6,6 +6,8 @@ support for:
 - 1 sample t test
 - 2 sample t test (welch test)
 - csv to 2d list conversion (for compatability with the library)
+- one-way anova
+- pairwise comparison
 
 please make sure you have the following libraries installed:
 
@@ -16,7 +18,7 @@ please make sure you have the following libraries installed:
 - statsmodels
 
 
-adding support for paired t test, anova, pairwise comparisons, and optional graphs
+adding support for paired t test and optional graphs
 
 feel free to clone n contribute. im still new to python in general. 
 
