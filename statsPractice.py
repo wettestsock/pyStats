@@ -100,7 +100,8 @@ print(stats.tukey_hsd(*anova2))
 #stats.false_discovery_control()
 
 
-
+df = pd.DataFrame(anova2, columns = ["high school", "fetus", "observer"])
+print(df)
 
 
 
