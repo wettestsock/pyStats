@@ -7,8 +7,8 @@ import numpy as npy #has :
     #npy.var (variance) 
     #npy.sem (standard error)
     #stats.norm.interval (CI for mean) parameters: confidence = (confidence), loc = (mean), scale = (standard error)
-    #note : standard error formula : std/m.sqrt(n)
-
+    #note : standard error formula : std/m.sqrt(n)  
+    
 import math as m
 
 ROUND = 4   #decimal place to round, default 4, can make whatever

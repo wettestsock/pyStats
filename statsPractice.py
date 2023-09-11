@@ -2,6 +2,7 @@ from asyncio.windows_events import NULL
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats 
+import statsmodels as s
 #import statsmodels.stats.multitest as m
 import numpy as npy #has : 
     #npy.mean (mean) 
@@ -97,7 +98,6 @@ print(f"f stat:{fStat} \t p-value: {pVal}")
 print(stats.tukey_hsd(*anova2))
 #print(data1.values.tolist())
 #stats.false_discovery_control()
-
 
 
 
