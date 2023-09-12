@@ -68,6 +68,7 @@ s.ATwo(data0, horizontalGroupNum=2, verticalGroupNum=2, horizontalGroupName='hor
 
 # 2 WAY ANOVA PRACTICE
 
+print(s.stats.f.ppf(q=1-0.01, dfn= 4, dfd= 28)) #f statistic critical value 
 
 
 
