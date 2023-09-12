@@ -1,6 +1,9 @@
-import pandas as pd
-import matplotlib.pyplot as plt
+from pandas import read_csv, DataFrame
+from math import sqrt
 from pandas._libs.lib import is_integer
+from statsmodels.stats.anova import anova_lm
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
 import scipy.stats as stats 
 import numpy as npy #has : 
     #npy.mean (mean) 
@@ -9,8 +12,6 @@ import numpy as npy #has :
     #npy.sem (standard error)
     #stats.norm.interval (CI for mean) parameters: confidence = (confidence), loc = (mean), scale = (standard error)
     #note : standard error formula : std/m.sqrt(n)  
-    
-import math as m
 
 ROUND = 4   #decimal place to round, default 4, can make whatever
 POSITION = "th"
@@ -39,7 +40,7 @@ def MTestPRaw(data1, comparison, data2, alpha=0.05):
 
 def MTestPData(SmeanDiff, stdDiff, comparison, n, alpha = 0.05):
     # STILL A WIP. DOESNT WORK YET. 
-    SE = stdDiff/m.sqrt(n)
+    SE = stdDiff/sqrt(n)
     tStat = SmeanDiff/SE   
     pVal = stats.t.cdf(tStat, n-1)
     sign = "!="
@@ -79,7 +80,7 @@ def MTest1SRaw(data, comparison, popMean=0, alpha=0.05) :
 
 def MTest1SData(Smean, std, comparison, popMean, n, alpha=0.05):
     #1 sample t test
-    SE = std/m.sqrt(n)
+    SE = std/sqrt(n)
     tStat = (Smean-popMean)/SE   
     pVal = stats.t.cdf(tStat, n-1)
     sign = "!="
@@ -122,7 +123,7 @@ def MTest2SData(Smean1, std1, n1, comparison, Smean2, std2, n2, alpha=0.05):
     #df = (pow(pow(std1,2)/n1 + pow(std2,2)/n2 ,2))/((1/(n1-1))*(pow(std1,2)/n1)+(1/(n2-1))*(pow(std2,2)/n2))   #??? 
     SE1 = std1*std1/n1
     SE2 = std2*std2/n2
-    SE = m.sqrt(SE1+SE2)
+    SE = sqrt(SE1+SE2)
     tStat = (Smean1-Smean2)/SE
     df=int((SE1+SE2)**2/((SE1**2)/(n1-1) + (SE2**2)/(n2-1)))
     pVal = stats.t.cdf(tStat, df) # calculates pValue from (-9e999 to t statistic)
@@ -172,7 +173,7 @@ def MIntervalRaw(data, confidence) :
 def MIntervalData(Smean, std, n, confidence):
     #mean interval
     #ME = stats.t.ppf(confidence/2, n-1 ) #ppf -> inverse cdf (cumulative density function )
-    lBound, uBound = stats.norm.interval(confidence = confidence, loc = Smean, scale = std/m.sqrt(n)) # steps :
+    lBound, uBound = stats.norm.interval(confidence = confidence, loc = Smean, scale = std/sqrt(n)) # steps :
     # stats.norm.interval , returns a tuple
     # assigns to lBound and uBound
     
@@ -240,20 +241,8 @@ def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, vertical
         f2Groups.append(f'({verticalGroupName} - {str(i+1)})')
     for i in range(horizontalGroupNum):
         f1Groups.append(f'({horizontalGroupName} - {str(i+1)})')
-    
 
-
-    #7dataframe1 = s.pd.DataFrame({
-    #7'video': s.npy.repeat(['Violent', 'Non-violent'], 30),
-    #7'student type': s.npy.repeat(['Volunteer', 'Psychology', 'Volunteer', 'Psychology'], 15),
-    #7'rating':
-    #7    [4.1,3.5,3.4,4.1,3.7,2.8,3.4,4.0,2.5,3.0,3.4,3.5,3.2,3.1,2.4, # violent, volunteer
-    #7    3.4,3.9,4.2,3.2,4.3,3.3,3.1,3.2,3.8,3.1,3.8,4.1,3.3,3.8,4.5, # violent physcology
-    #7    2.4,2.4,2.5,2.6,3.6,4.0,3.3,3.7,2.8,2.9,3.2,2.5,2.9,3.0,2.4,    #non violent volunteer
-    #7    2.5,2.9,2.9,3.0,2.6,2.4,3.5,3.3,3.7,3.3,2.8,2.5,2.8,2.0,3.1]    #non violent psychology
-    #7}) 
-
-    df = pd.DataFrame({
+    df = DataFrame({
     horizontalGroupName : npy.repeat(f1Groups,l/horizontalGroupNum),
     verticalGroupName: npy.repeat(f2Groups, l/verticalGroupNum),
     'data': values
@@ -313,7 +302,7 @@ def PComparison(twoDimensionalList, alpha =0.05):
 
 def csvFileToList(relativePath):
     #quick conversion from csv file to list
-    return dfToList(pd.read_csv(relativePath))
+    return dfToList(read_csv(relativePath))
 
 def dfToList(DataFrame): 
     #DataFrame object to a List (not dictionary)
@@ -338,7 +327,7 @@ def listToDF(twoDimensionalList):
     #list to a dataframe takes each list in the list as a row
     #this one makes each list a column with columns 0 through n-1
     #where n is the # of columns 
-    return pd.DataFrame(listToDict(twoDimensionalList))
+    return DataFrame(listToDict(twoDimensionalList))
 
 def listToDict(twoDimensionalList):
     #list to dataframe object, where each list within the list represents a column (starting index 0)

@@ -12,8 +12,8 @@ data3 = [22.0, 16.0, 21.7, 21.0, 30.0, 26.0, 12.0, 23.2, 28.0, 23.0]
 data4 = [14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25]
 data5 = [14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25]
 data6 = [10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34]
-data7 = s.pd.read_csv("anova.csv")
-data8 = s.pd.read_csv("anova2.csv")
+data7 = s.read_csv("anova.csv")
+data8 = s.read_csv("anova2.csv")
 anova1 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3], [1.1,0.8,2.3]]
 anova2 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9]]
 anova3 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9,2.2]]
@@ -24,7 +24,7 @@ dataframe0 = [4.1,3.5,3.4,4.1,3.7,2.8,3.4,4.0,2.5,3.0,3.4,3.5,3.2,3.1,2.4, # vio
         2.5,2.9,2.9,3.0,2.6,2.4,3.5,3.3,3.7,3.3,2.8,2.5,2.8,2.0,3.1]    #non violent psychology
         #60 values 
 
-dataframe1 = s.pd.DataFrame({
+dataframe1 = s.DataFrame({
     'video': s.npy.repeat(['Violent', 'Non-violent'], 30),
     'student type': s.npy.repeat(['Volunteer', 'Psychology', 'Volunteer', 'Psychology'], 15),
     'rating':
