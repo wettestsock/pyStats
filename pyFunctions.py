@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pandas._libs.lib import is_integer
 import scipy.stats as stats 
 import numpy as npy #has : 
     #npy.mean (mean) 
@@ -8,7 +9,8 @@ import numpy as npy #has :
     #npy.sem (standard error)
     #stats.norm.interval (CI for mean) parameters: confidence = (confidence), loc = (mean), scale = (standard error)
     #note : standard error formula : std/m.sqrt(n)
-
+from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
 import math as m
 
 ROUND = 4   #decimal place to round, default 4, can make whatever
@@ -215,6 +217,65 @@ def AOne(twoDimensionalList, alpha = 0.05):
     else:
         print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do NOT have convincing evidence that{final}")
     print("---------------------\n")
+    
+def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, verticalGroupName = "factor 2", verticalGroupNum=2, alpha=0.05):
+    #WIP
+    l = len(values)
+    print("---------------------")
+    if l == horizontalGroupNum*verticalGroupNum:
+        print("ERROR: EACH CELL CONTAINS 1 SAMPLE.\n Samples are being compared, not means. >:(")
+        print("---------------------\n")
+        return
+    if l%2 != 0:
+        print("ERROR: ODD SAMPLE SIZE. CHOOSING TO NOT CUT OFF.")
+        print("---------------------\n")
+        return
+    if not (l/(horizontalGroupNum*verticalGroupNum)).is_integer():
+        print("NUCLEAR ALARM: INVALID HORIZONTAL/VERTICAL FACTOR AMOUNTS.\nHorizontal times vertical factor groups DO NOT evenly split the values.")
+        print("---------------------\n")
+        return
+    
+
+    f1Groups, f2Groups = [], []
+    for i in range(verticalGroupNum):
+        f2Groups.append(f'({verticalGroupName} - {str(i+1)})')
+    for i in range(horizontalGroupNum):
+        f1Groups.append(f'({horizontalGroupName} - {str(i+1)})')
+    
+
+
+    #7dataframe1 = s.pd.DataFrame({
+    #7'video': s.npy.repeat(['Violent', 'Non-violent'], 30),
+    #7'student type': s.npy.repeat(['Volunteer', 'Psychology', 'Volunteer', 'Psychology'], 15),
+    #7'rating':
+    #7    [4.1,3.5,3.4,4.1,3.7,2.8,3.4,4.0,2.5,3.0,3.4,3.5,3.2,3.1,2.4, # violent, volunteer
+    #7    3.4,3.9,4.2,3.2,4.3,3.3,3.1,3.2,3.8,3.1,3.8,4.1,3.3,3.8,4.5, # violent physcology
+    #7    2.4,2.4,2.5,2.6,3.6,4.0,3.3,3.7,2.8,2.9,3.2,2.5,2.9,3.0,2.4,    #non violent volunteer
+    #7    2.5,2.9,2.9,3.0,2.6,2.4,3.5,3.3,3.7,3.3,2.8,2.5,2.8,2.0,3.1]    #non violent psychology
+    #7}) 
+
+    df = pd.DataFrame({
+    horizontalGroupName : npy.repeat(f1Groups,l/horizontalGroupNum),
+    verticalGroupName: npy.repeat(f2Groups, l/verticalGroupNum),
+    'data': values
+    })
+    
+    model = ols('data ~ C({0}) + C({1}) + C({0}):C({1})'.format(horizontalGroupName , verticalGroupName ), data = df).fit()
+    result = anova_lm(model, type=2) #p vals: 0.9133, .99, .904
+    
+    pVals = result.loc[:, 'PR(>F)'].values.tolist()
+    pVals.pop()
+    pVals = [round(n, ROUND) for n in pVals]
+    
+    print(df)
+    print(f"\n   2-WAY ANOVA\n   OR A FACTORIAL EXPERIMENT\n   OR A RANDOMIZED   BLOCK DESIGN\n    Rounded to the {ROUND}{POSITION} decimal.")
+    
+    print(result, '\n', pVals)
+    
+    #print(npy.repeat(f1Groups,l/horizontalGroupNum))
+    #print(npy.repeat(f2Groups,l/verticalGroupNum))
+    #print(f1Groups)    
+    #print(f2Groups)
 
 
 def PComparison(twoDimensionalList, alpha =0.05):
@@ -239,7 +300,7 @@ def PComparison(twoDimensionalList, alpha =0.05):
     print("---------------------\n")
         
         
-        
+     
 
 
     
@@ -272,6 +333,20 @@ def dfToList(DataFrame):
         
         final[value] += [val] 
     return final
+
+def listToDF(twoDimensionalList):
+    #converts list to a dictionary before converting to a dataframe 
+    #list to a dataframe takes each list in the list as a row
+    #this one makes each list a column with columns 0 through n-1
+    #where n is the # of columns 
+    return pd.DataFrame(listToDict(twoDimensionalList))
+
+def listToDict(twoDimensionalList):
+    #list to dataframe object, where each list within the list represents a column (starting index 0)
+    dict = {}
+    for i, item in enumerate(twoDimensionalList):
+        dict.update({i: item})
+    return dict
     
 
 

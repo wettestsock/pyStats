@@ -3,6 +3,9 @@ import pyFunctions as s
 
 #testing and debugging purposes. anova.csv and anova2.csv is extra data. 
 
+
+dataa = [301, 305, 312, 315, 318, 319, 310, 318, 305, 313, 305, 305, 305, 311] # 14 values
+data0 = [301, 305, 312, 315, 318, 319, 310, 318, 305, 313, 305, 305, 305, 311,230,322] # 16 values
 data1 = [85, 90, 94, 89, 90, 93, 95, 96, 92, 93, 93 ,95]
 data2 = [13.3, 6.0, 20.0, 8.0, 14.0, 19.0, 18.0, 25.0, 16.0, 24.0, 15.0, 1.0, 15.0]
 data3 = [22.0, 16.0, 21.7, 21.0, 30.0, 26.0, 12.0, 23.2, 28.0, 23.0]
@@ -14,6 +17,23 @@ data8 = s.pd.read_csv("anova2.csv")
 anova1 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3], [1.1,0.8,2.3]]
 anova2 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9]]
 anova3 = [[3.7,1.2,4.1,5.4,2.5], [5.1,2.1,4.5,4.3,4.2], [1.1,0.8,2.3,2.2,1.9,2.2]]
+
+dataframe0 = [4.1,3.5,3.4,4.1,3.7,2.8,3.4,4.0,2.5,3.0,3.4,3.5,3.2,3.1,2.4, # violent, volunteer
+        3.4,3.9,4.2,3.2,4.3,3.3,3.1,3.2,3.8,3.1,3.8,4.1,3.3,3.8,4.5, # violent physcology
+        2.4,2.4,2.5,2.6,3.6,4.0,3.3,3.7,2.8,2.9,3.2,2.5,2.9,3.0,2.4,    #non violent volunteer
+        2.5,2.9,2.9,3.0,2.6,2.4,3.5,3.3,3.7,3.3,2.8,2.5,2.8,2.0,3.1]    #non violent psychology
+        #60 values 
+
+dataframe1 = s.pd.DataFrame({
+    'video': s.npy.repeat(['Violent', 'Non-violent'], 30),
+    'student type': s.npy.repeat(['Volunteer', 'Psychology', 'Volunteer', 'Psychology'], 15),
+    'rating':
+        [4.1,3.5,3.4,4.1,3.7,2.8,3.4,4.0,2.5,3.0,3.4,3.5,3.2,3.1,2.4, # violent, volunteer
+        3.4,3.9,4.2,3.2,4.3,3.3,3.1,3.2,3.8,3.1,3.8,4.1,3.3,3.8,4.5, # violent physcology
+        2.4,2.4,2.5,2.6,3.6,4.0,3.3,3.7,2.8,2.9,3.2,2.5,2.9,3.0,2.4,    #non violent volunteer
+        2.5,2.9,2.9,3.0,2.6,2.4,3.5,3.3,3.7,3.3,2.8,2.5,2.8,2.0,3.1]    #non violent psychology
+})    
+print(dataframe1)
   
 s.VIntervalRaw(data1, 0.95) # (4.4711, 25.6849)
 s.MIntervalRaw(data1, 0.95) # (90.3945, 93.7722)
@@ -33,6 +53,8 @@ s.AOne(anova2)
 
 
 s.PComparison(anova3, alpha = 0.05)
+
+s.ATwo(data0, horizontalGroupNum=2, verticalGroupNum=2, horizontalGroupName='horiz', verticalGroupName='vert')
 
 #anova3 data:
 #Comparison  Statistic  p-value  Lower CI  Upper CI
