@@ -64,3 +64,12 @@ s.ATwo(data0, horizontalGroupNum=2, verticalGroupNum=2, horizontalGroupName='hor
 # (1 - 2)     11.087     0.026     1.056    21.117
 # (2 - 0)    -15.512     0.001   -25.110    -5.915
 # (2 - 1)    -11.087     0.026   -21.117    -1.056
+
+
+# 2 WAY ANOVA PRACTICE
+
+
+
+
+
+

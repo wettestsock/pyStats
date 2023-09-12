@@ -2,6 +2,7 @@ from asyncio.windows_events import NULL
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats 
+import statsmodels as s
 #import statsmodels.stats.multitest as m
 import numpy as npy #has : 
     #npy.mean (mean) 
@@ -150,8 +151,8 @@ for i, item in enumerate(anova2Way):
 df = pd.DataFrame(dict)
 print(df)
 
-
-
+df = pd.DataFrame(anova2, columns = ["high school", "fetus", "observer"])
+print(df)
 
 #2 WAY ANOVA TEST 
 
