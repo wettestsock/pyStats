@@ -234,7 +234,7 @@ def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, vertical
         print("NUCLEAR ALARM: INVALID HORIZONTAL/VERTICAL FACTOR AMOUNTS.\nHorizontal times vertical factor groups DO NOT evenly split the values.")
         print("---------------------\n")
         return
-    
+    #i did it
 
     f1Groups, f2Groups = [], []
     for i in range(verticalGroupNum):
