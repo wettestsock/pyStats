@@ -3,6 +3,7 @@ from math import sqrt
 from pandas._libs.lib import is_integer
 from statsmodels.stats.anova import anova_lm
 from statsmodels.formula.api import ols
+from itertools import product
 import matplotlib.pyplot as plt
 import scipy.stats as stats 
 import numpy as npy #has : 
@@ -218,11 +219,11 @@ def AOne(twoDimensionalList, alpha = 0.05):
         print(f"   We fail to reject the null because the p-value of {pVal} is greater than a = {alpha}.\n   Therefore, we do NOT have convincing evidence that{final}")
     print("---------------------\n")
     
-def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, verticalGroupName = "factor 2", verticalGroupNum=2, alpha=0.05):
+def ATwo(values, horizontalFName= "treatment", horizontalFNum=2, verticalFName = "block", verticalFNum=2, alpha=0.05):
     #WIP
     l = len(values)
     print("---------------------")
-    if l == horizontalGroupNum*verticalGroupNum:
+    if l == horizontalFNum*verticalFNum:
         print("ERROR: EACH CELL CONTAINS 1 SAMPLE.\n Samples are being compared, not means. >:(")
         print("---------------------\n")
         return
@@ -230,25 +231,36 @@ def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, vertical
         print("ERROR: ODD SAMPLE SIZE. CHOOSING TO NOT CUT OFF.")
         print("---------------------\n")
         return
-    if not (l/(horizontalGroupNum*verticalGroupNum)).is_integer():
+    if not (l/(horizontalFNum*verticalFNum)).is_integer():
         print("NUCLEAR ALARM: INVALID HORIZONTAL/VERTICAL FACTOR AMOUNTS.\nHorizontal times vertical factor groups DO NOT evenly split the values.")
         print("---------------------\n")
         return
     #i did it
 
     f1Groups, f2Groups = [], []
-    for i in range(verticalGroupNum):
-        f2Groups.append(f'({verticalGroupName} - {str(i+1)})')
-    for i in range(horizontalGroupNum):
-        f1Groups.append(f'({horizontalGroupName} - {str(i+1)})')
-
+    for i in range(verticalFNum):
+        f2Groups.append(f'({verticalFName} - {str(i+1)})')
+    for i in range(horizontalFNum):
+        f1Groups.append(f'({horizontalFName} - {str(i+1)})')
+    
     df = DataFrame({
-    horizontalGroupName : npy.repeat(f1Groups,l/horizontalGroupNum),
-    verticalGroupName: npy.repeat(f2Groups, l/verticalGroupNum),
+    horizontalFName : npy.repeat(f1Groups,l/horizontalFNum),
+    verticalFName: npy.repeat(f2Groups, l/verticalFNum/2),
     'data': values
     })
+
+    #l/(horizontalFName*verticalFName)
     
-    model = ols('data ~ C({0}) + C({1}) + C({0}):C({1})'.format(horizontalGroupName , verticalGroupName ), data = df).fit()
+    #c = list(product([horizontalFName + ' - '+ str(x+1) for x in range(horizontalFNum)], [verticalFName + ' - '+ str(i+1) for i in range(verticalFNum)]))
+    #c = [npy.repeat(i, l/(horizontalFNum*verticalFNum)) for i in c]
+    #
+    #df = DataFrame({
+    #horizontalFName : [i[0] for i in c],
+    #verticalFName: [i[1] for i in c],
+    #'data': values
+    #})
+    
+    model = ols('data ~ C({0}) + C({1}) + C({0}):C({1})'.format(horizontalFName , verticalFName ), data = df).fit()
     result = anova_lm(model, type=2) #p vals: 0.9133, .99, .904
     
     pVals = result.loc[:, 'PR(>F)'].values.tolist()
@@ -260,8 +272,8 @@ def ATwo(values, horizontalGroupName= "factor 1", horizontalGroupNum=2, vertical
     
     print(result, '\n', pVals)
     
-    #print(npy.repeat(f1Groups,l/horizontalGroupNum))
-    #print(npy.repeat(f2Groups,l/verticalGroupNum))
+    #print(npy.repeat(f1Groups,l/horizontalFNum))
+    #print(npy.repeat(f2Groups,l/verticalFNum))
     #print(f1Groups)    
     #print(f2Groups)
 

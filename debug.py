@@ -54,7 +54,7 @@ s.AOne(anova2)
 
 s.PComparison(anova3, alpha = 0.05)
 
-s.ATwo(data0, horizontalGroupNum=2, verticalGroupNum=2, horizontalGroupName='horiz', verticalGroupName='vert')
+#s.ATwo(data0, horizontalGroupNum=4, verticalGroupNum=2)
 
 #anova3 data:
 #Comparison  Statistic  p-value  Lower CI  Upper CI
@@ -68,9 +68,34 @@ s.ATwo(data0, horizontalGroupNum=2, verticalGroupNum=2, horizontalGroupName='hor
 
 # 2 WAY ANOVA PRACTICE
 
-print(s.stats.f.ppf(q=1-0.01, dfn= 4, dfd= 28)) #f statistic critical value 
+print(s.stats.f.ppf(q=1-0.01, dfn= 2, dfd= 18)) #f statistic critical value for treatment
+print(1-s.stats.f.cdf(x=3.6, dfn= 2, dfd = 18)) # p value treatment given f statistic (x) 
+                                                # df numerator = (a-1) df denominator = (a-1)(b-1)
 
 
+
+print(s.stats.f.ppf(q=1-0.05, dfn= 2, dfd= 18)) #f statistic critical value  for block
+print(1-s.stats.f.cdf(x=1.2, dfn= 9, dfd = 18)) # p value block given f statistic (x) 
+                                                # df numerator = (b-1) df denominator = (a-1)(b-1)
+
+
+
+print(s.stats.f.ppf(q=1-0.05, dfn= 2, dfd= 18)) #f statistic critical value  for block
+print(1-s.stats.f.cdf(x=4, dfn= 9, dfd = 18)) # p value block given f statistic (x) 
+                                                # df numerator = (b-1) df denominator = (a-1)(b-1)
+
+
+d = [1.64 ,1.47 ,1.8  ,1.37 ,1.71 ,1.71 ,1.81 ,1.51 ,1.63 ,1.65 ,1.35 ,1.45 ,1.66 ,1.44 ,2.35 ,2.84 ,2.97 ,2.05 ,2.54 ,2.82 ,2.93 ,2.93 ,2.63 ,2.72 ,2.61 ,2.99 ,2.64 ,2.19]
+#s.ATwo(d,horizontalFName = 'diet', verticalFName = 'rat_size')
+
+
+df = s.DataFrame({"diet": s.npy.repeat(['regular', 'vitamin', 'regular', 'vitamin'], 7),
+                  "size": s.npy.repeat(['lean', 'obese'], 14),
+                  "data": d})
+
+model = s.ols("data ~ C(diet) + C(size) + C(diet):C(size)", data = df).fit()
+print(df)
+print(s.anova_lm(model, type=2))
 
 
 
