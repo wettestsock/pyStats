@@ -203,7 +203,7 @@ def AOne(twoDimensionalList, alpha = 0.05):
     #note: anova can be used for a 2 sample test, so the exception is handled in the interpretations
     #i code in the interpretation
     fStat, pVal = stats.f_oneway(*twoDimensionalList)
-    null, alternate, final = "= ... =", "At least two treatment means differ", " the mean difference between at least two populations is not 0."
+    null, alternate, final = "= ... =", "At least two treatment means differ", " to conclude that that at least 2 of the means are significantly different from each other."
     if len(twoDimensionalList)==2:
         null, alternate, final = "=", "m1 != m2", "..."
     
