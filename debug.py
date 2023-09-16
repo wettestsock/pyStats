@@ -82,7 +82,12 @@ print(1-s.stats.f.cdf(x=1.2, dfn= 9, dfd = 18)) # p value block given f statisti
 
 print(s.stats.f.ppf(q=1-0.05, dfn= 2, dfd= 18)) #f statistic critical value  for block
 print(1-s.stats.f.cdf(x=4, dfn= 9, dfd = 18)) # p value block given f statistic (x) 
-                                                # df numerator = (b-1) df denominator = (a-1)(b-1)
+              # df numerator = (b-1) df denominator = (a-1)(b-1)
+
+
+
+# p value from chi square : 1-s.stats.chi2.cdf(chisq, df)
+
 
 
 d = [1.64 ,1.47 ,1.8  ,1.37 ,1.71 ,1.71 ,1.81 ,1.51 ,1.63 ,1.65 ,1.35 ,1.45 ,1.66 ,1.44 ,2.35 ,2.84 ,2.97 ,2.05 ,2.54 ,2.82 ,2.93 ,2.93 ,2.63 ,2.72 ,2.61 ,2.99 ,2.64 ,2.19]
@@ -94,8 +99,14 @@ df = s.DataFrame({"diet": s.npy.repeat(['regular', 'vitamin', 'regular', 'vitami
                   "data": d})
 
 model = s.ols("data ~ C(diet) + C(size) + C(diet):C(size)", data = df).fit()
+
+
+
+
 print(df)
 print(s.anova_lm(model, type=2))
 
+name = input("type ur name: ")
+print(name)
 
 

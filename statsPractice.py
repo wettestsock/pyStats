@@ -133,6 +133,8 @@ data2.boxplot("Stress_score", by="Group")   # .boxplot(y axis, x axis)
 #data2.plot.pie(y="Stress_score")
 #plt.show()
 
+
+#F STATISTIC = VARIANCE 1 /VARIANCE 2
 print(2*(1-stats.f.cdf(1.083646869,24,24))) # two tail f test
 
 
@@ -151,13 +153,16 @@ for i, item in enumerate(anova2Way):
 df = pd.DataFrame(dict)
 print(df)
 
-df = pd.DataFrame(anova2, columns = ["high school", "fetus", "observer"])
-print(df)
+
 
 #2 WAY ANOVA TEST 
 
 
 print(npy.repeat(['Violent', 'Non-violent'], 30))
 
+
+pdd = pd.read_excel('data.xlsx')
+df = s.DataFrame(pdd)
+print(s.stats.f_oneway([i for i in pdd.columns]))
 
 
