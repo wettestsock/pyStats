@@ -125,3 +125,40 @@ c = a.copy()   # copies the contents
 
 c[0] = 100
 print(a,c)
+
+
+#MATHS TUFF
+
+print((a-3).__abs__()**5) # substracts from all elements, absolute value, power
+# adds, divides, multiplies, etc
+
+print(npy.sin(a))
+
+#more math stuff in documentation
+
+
+#STATSSSS
+
+print(npy.min(h, axis=0))
+print(npy.sum(npy.min(h, axis=0)))
+
+#REORGANIZING ARRAYS
+
+before = b.copy()
+
+print(before)
+
+after = before.reshape((18,1))
+print(after) #reshapes array to this many columns n rows
+
+print(npy.vstack([b, npy.full(b.shape, 5)])) 
+# vertically stacks all the arrays together (as long as same column #)
+h2 =npy.hstack([after, npy.random.randint(3,523, size=(18,3))])
+print(h2) 
+# vertically stacks (as long as same row #)
+
+
+#OTHER STUFF
+
+
+#LOAD DATA FROM LIFE
