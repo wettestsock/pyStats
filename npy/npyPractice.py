@@ -1,4 +1,5 @@
 import numpy as npy
+import pandas as pd
 
 
 #NUMPY PRACTICEEEEEEEEEEEEEE
@@ -8,8 +9,8 @@ import numpy as npy
 #AXES 
 # common parameter is the axes
 
-# axis = 1   <----- horizontal
-# axis = 0   <----- vertical
+# axis = 1   <----- horizontal (rows)
+# axis = 0   <----- vertical (columns)
 # horizontal = 1 , vertical = 0
 
 
@@ -162,3 +163,26 @@ print(h2)
 
 
 #LOAD DATA FROM LIFE
+df = pd.read_csv('../anova.csv')
+print(df)
+
+
+# BOOLEAN MASKING N ADVANCED INDEXING
+
+print(b>20) # boolean comparison for elements 
+print(b[b>20])
+
+b1 = b[:,2]  
+print("\nall 3>x<100 in column 2:\n",b1[(b1>3) & (b1<100)], '\n')  # returns all nums >3 and <100
+
+
+#can index with a list in numpy
+print(b[[0,2]]) # rows 0, 2
+
+print('', b, '', b[:, [0,2]], sep='\n') # columns 0, 2
+#sep = separator between args
+
+
+print(npy.any(b>20, axis=0)) # any in the columns (vertically) is true 
+#also npy.any exists
+
