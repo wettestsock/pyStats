@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as npy
+import re 
+#REGEX 
+#regular expressions - allow for a lot of powerful string sorting in python
+#learn more later ^^^^^
 
 # PANDAS LIBRARY INTRODUCTION 
 
@@ -61,5 +65,43 @@ print(cols)
 
 #   SAVING TO A CSV FILE
 
-df.to_csv('modified.csv', index = False)  # dont save the annoying dataframe index
-df.to_csv()
+
+
+# FILTERING DATA
+
+new_df = df.loc[(df['Type 1'] == 'Grass') & (df['Type 2'] == 'Poison') & (df['HP']>70)]
+#new_df = new_df.reset_index(drop = True)  # resets the index, assigns to new df
+new_df.reset_index(drop = True, inplace=True)  # inplace just sets the new df, no need to reassign it
+
+
+new_df = df.loc[df['Name'].str.contains('Mega')]  # strings that CONTAIN word Mega
+new_df.reset_index(drop=True, inplace=True)
+
+new_df = df.loc[df['Type 1'].str.contains('fire|grass', flags = re.I, regex=True)]  # regex , find Fire or Grass , IGNORE CASE
+
+new_df = df.loc[df['Name'].str.contains('^pi[a-z]*', flags = re.I, regex = True)] # regex, start of line (^), pi followed by [a-z], repeated multiple times
+#LEARN REGEX
+
+df.loc[df['Type 1'] == 'Fire', 'Type 1'] = 'Flamer'  # df type 1 is fire, type 1 of the fire, assign it to flamer
+
+print(df)
+
+new_df.to_csv('modified.csv', index = False)  # dont save the annoying dataframe index
+print(new_df) 
+
+ # convention of pytohn pandas library : 
+    # & for and
+    # | for or
+    # ~ for not
+
+
+
+#GROUPBY FUNCTION TO DO AGGREGATE STATS
+
+df3 = pd.DataFrame(pd.read_csv('pandas/pokemon_data.csv'))
+
+df3['count'] =1 # adds count column 
+print(df3.groupby(by = 'Type 1').count()['count'])  #amount of stuff sorted by type 1
+# watch more on this, very buggy
+
+
