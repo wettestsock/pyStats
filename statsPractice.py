@@ -1,8 +1,8 @@
-from asyncio.windows_events import NULL
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats 
-import statsmodels as s
+import statsmodels as models
 #import statsmodels.stats.multitest as m
 import numpy as npy #has : 
     #npy.mean (mean) 
@@ -161,8 +161,19 @@ print(df)
 print(npy.repeat(['Violent', 'Non-violent'], 30))
 
 
-pdd = pd.read_excel('data.xlsx')
-df = s.DataFrame(pdd)
-print(s.stats.f_oneway([i for i in pdd.columns]))
 
 
+
+
+data = npy.array([[1.2,1.3,2.1,1.1,2.3], [2.2,2.2,1.2,1.4,2.1], [0.4,0.9,0.2,1.1,1.4], [2.2,1.4,1.1,1.2,1.5], [2.2,3.2,1.5,1.9,2.4]])
+
+out = stats.tukey_hsd(*data)
+print(stats.f_oneway(*data), out, out.confidence_interval(), sep='\n')
+tuke = npy.array(out.confidence_interval())
+
+print(tuke[0], '\n')
+print(tuke[0,2, :])
+
+model = models.formula.api.ols()
+
+models.stats.anova.anova_lm()
