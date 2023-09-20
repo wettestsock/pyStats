@@ -105,3 +105,4 @@ print(df3.groupby(by = 'Type 1').count()['count'])  #amount of stuff sorted by t
 # watch more on this, very buggy
 
 
+print(df3.boxplot())

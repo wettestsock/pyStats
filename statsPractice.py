@@ -128,7 +128,7 @@ with open("anova2.csv", 'r') as f:
 #print(data2.head())
 #print(data2.tail())
 
-data2.boxplot("Stress_score", by="Group")   # .boxplot(y axis, x axis)
+#data2.boxplot("Stress_score", by="Group")   # .boxplot(y axis, x axis)
 
 #data2.plot.pie(y="Stress_score")
 #plt.show()
@@ -165,15 +165,16 @@ print(npy.repeat(['Violent', 'Non-violent'], 30))
 
 
 
-data = npy.array([[1.2,1.3,2.1,1.1,2.3], [2.2,2.2,1.2,1.4,2.1], [0.4,0.9,0.2,1.1,1.4], [2.2,1.4,1.1,1.2,1.5], [2.2,3.2,1.5,1.9,2.4]])
+data = pd.DataFrame({0: [1.2,1.3,2.1,1.1,2.3], 1: [2.2,2.2,1.2,1.4,2.1], 2: [0.4,0.9,0.2,1.1,1.4], 3: [2.2,1.4,1.1,1.2,1.5], 4: [2.2,3.2,1.5,1.9,2.4]})
 
-out = stats.tukey_hsd(*data)
-print(stats.f_oneway(*data), out, out.confidence_interval(), sep='\n')
-tuke = npy.array(out.confidence_interval())
+#out = stats.tukey_hsd(data[0:4])
+#print(stats.f_oneway(data), out, out.confidence_interval(), sep='\n')
+#tuke = npy.array(out.confidence_interval())
+#
+#print(tuke[0], '\n')
+#print(tuke[0,2, :])
 
-print(tuke[0], '\n')
-print(tuke[0,2, :])
 
-model = models.formula.api.ols()
+data.boxplot()
 
-models.stats.anova.anova_lm()
+plt.show()
