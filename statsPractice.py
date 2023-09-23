@@ -175,6 +175,9 @@ data = pd.DataFrame({0: [1.2,1.3,2.1,1.1,2.3], 1: [2.2,2.2,1.2,1.4,2.1], 2: [0.4
 #print(tuke[0,2, :])
 
 
-data.boxplot()
+#data.boxplot()
+#
+#plt.show()
 
-plt.show()
+print(stats.chi2.ppf(1-0.05/2,22))   #x^2 test statistic, more extreme than this n reject null
+                    # confidence level (opposite of alpha, df)
