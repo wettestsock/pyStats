@@ -175,12 +175,6 @@ data = pd.DataFrame({0: [1.2,1.3,2.1,1.1,2.3], 1: [2.2,2.2,1.2,1.4,2.1], 2: [0.4
 #print(tuke[0,2, :])
 
 
-#data.boxplot()
-#plt.show()
+data.boxplot()
 
-
-print(stats.chi2.ppf(0.05, df=22))
-
-
-df = pd.DataFrame({'brand1': [307,310,335,325,300,345,312,298],'brand2':[315,317,335,328,305,350,315,302],'brand3':[300,305,330,320,295,340,308,295],'brand4':[275,285,302,300,270,310,300,288]})
-print(stats.tukey_hsd(df.iloc[0],df.iloc[1],df.iloc[2],df.iloc[3],df.iloc[4],df.iloc[5],df.iloc[6],df.iloc[7]))
+plt.show()
