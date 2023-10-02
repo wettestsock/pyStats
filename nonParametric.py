@@ -66,7 +66,7 @@ print(spy.ranksums(S13,S17,alternative='less'))
 # ex 1, gives small sample size warning
 chimps=npy.array([[23,22,21,23,19,19,19],[21,22,23,21,18,16,19]])
 print(spy.shapiro(chimps[0]), spy.shapiro(chimps[1]), sep='\n')
-print(spy.wilcoxon(chimps[0]-chimps[1], alternative='greater', zero_method='????'))
+#print(spy.wilcoxon(chimps[0]-chimps[1], alternative='greater', zero_method='????'))
 
 
 '''
@@ -80,3 +80,32 @@ print(spy.wilcoxon(additive[0]-additive[1], alternative='greater'))
 
 associate = npy.array([[21 ,22 ,21 ,19 ,18 ,25 ,16 ,18 ,21 ,24 ,21],[14, 21, 24, 16, 18 ,20 ,15 ,20, 17, 16, 18]])
 print(spy.wilcoxon(associate[0]-associate[1], alternative = 'greater'))
+
+
+'''
+--------------------------------------
+NONPARAMETRIC ANOVA TEST
+COMPLETELY RANDOMIZED DESIGN
+
+aka krustal wallis h -test
+
+H0: the k probabiltiy distributions are identical.
+Ha: at least 2 of the k probability distributions differ in location
+
+assumptions: 
+- k samples are random and independent
+- n>= 5 for each sample
+- continuous data (can be broken sometimes)
+'''
+
+#ex
+
+pties=npy.array([[149,139,139,49,59.0],[98,35,35,37,29.0],[104.0,99,99,29.97,142]])
+
+print(spy.kruskal(*pties))
+
+
+stay = [[1,3,4,6,7,7,7,9,9,13],[1,4,4,5,5,5,6,7,8,10],[1,1,5,5,5,7,8,8],[2,3,3,4,5,5,6,6,6]]
+
+print(spy.kruskal(*stay, nan_policy='omit'))
+#MAY NOT GIVE THE EXACT P VALUE, BE CAREFUL
