@@ -133,9 +133,11 @@ CHI SQUARE DISTRIBUTION  X^2
 if Fr (test statistic) > X^2 reject null
 '''
 
+#INPUT THE TREATMENTS ONLY
 rats = pd.DataFrame({1:[6,9,6,5,7,5,6,6],2:[5,8,9,8,8,7,7,5],3:[3,4,3,6,9,6,5,7]})
 
 
+#treatments
 print(spy.friedmanchisquare(list(rats[1]),list(rats[2]),list(rats[3])))
 print(spy.levene(rats[1], rats[1],rats[2]))
 
@@ -151,3 +153,20 @@ print(spy.friedmanchisquare(*heartRate))
 rats.boxplot()
 plt.show()
 
+
+'''
+BOOTSTRAPPING:
+takes small sample of data and simulate the sampling distribution
+that should be gotten from the entire population
+
+for loops !!!!!!!!!!!!!
+a lot of samples
+( usually 8 to 10000 )
+
+repeat sample means a few thousand times
+find a mean of all the sample means 
+final standard error = sd of all means
+
+
+^^^ DO MORE RESEARCH ON THIS
+'''
