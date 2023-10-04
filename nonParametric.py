@@ -2,6 +2,7 @@ import numpy as npy
 import pandas as pd
 import scipy.stats as spy
 import statsmodels.stats as sm
+from matplotlib import pyplot as plt
 
 # SIGN TEST IN PYTHON ( 1 sample)
 
@@ -113,6 +114,7 @@ print(spy.kruskal(*stay, nan_policy='omit'))
 '''
 NONPARAMETRIC ANOVA TEST
 RANDOMIZED BLOCK DESIGN
+FRIEDSMAN SQUARE TEST
 
 reduces variability as compared to completely randomized
 df = k+1
@@ -131,4 +133,21 @@ CHI SQUARE DISTRIBUTION  X^2
 if Fr (test statistic) > X^2 reject null
 '''
 
+rats = pd.DataFrame({1:[6,9,6,5,7,5,6,6],2:[5,8,9,8,8,7,7,5],3:[3,4,3,6,9,6,5,7]})
+
+
+print(spy.friedmanchisquare(list(rats[1]),list(rats[2]),list(rats[3])))
+print(spy.levene(rats[1], rats[1],rats[2]))
+
+month = npy.array([[12,16,18,8],[15,17,16,12],[18,15,22,10],[20,12,19,16]])
+print(spy.friedmanchisquare(*month))
+
+heartRate= npy.array([[124,100,103,94,125,103,98,119],[124,98,98,91,123,98,82,87],[109,98,100,98,106,100,99,106],[107,99,106,95,110,103,105,111]])
+print(spy.friedmanchisquare(*heartRate))
+
+
+
+#sample boxplots (for dataframes)
+rats.boxplot()
+plt.show()
 
