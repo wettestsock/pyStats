@@ -109,3 +109,26 @@ stay = [[1,3,4,6,7,7,7,9,9,13],[1,4,4,5,5,5,6,7,8,10],[1,1,5,5,5,7,8,8],[2,3,3,4
 
 print(spy.kruskal(*stay, nan_policy='omit'))
 #MAY NOT GIVE THE EXACT P VALUE, BE CAREFUL
+
+'''
+NONPARAMETRIC ANOVA TEST
+RANDOMIZED BLOCK DESIGN
+
+reduces variability as compared to completely randomized
+df = k+1
+     ^^^^^ df is +1 instead of -1
+
+CONDITIONS:
+treatments randomly assigned to experimental units within the blocks
+measurements ranked within blocks
+continuous data (to prevent ties)
+
+HYPOTHESES: 
+H0: probability distributions for the treatments are identical.
+Ha: At least 2 of the probability distributions differ in location.
+
+CHI SQUARE DISTRIBUTION  X^2
+if Fr (test statistic) > X^2 reject null
+'''
+
+
