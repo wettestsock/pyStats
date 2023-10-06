@@ -170,3 +170,6 @@ final standard error = sd of all means
 
 ^^^ DO MORE RESEARCH ON THIS
 '''
+
+blocks= npy.array([[3,4,1,1,3,4],[1,3,4,2,2,3],[4,1,3,3,4,1],[2,2,2,4,1,2]])
+print(spy.friedmanchisquare(*blocks))
