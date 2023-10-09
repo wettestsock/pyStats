@@ -170,14 +170,3 @@ final standard error = sd of all means
 
 ^^^ DO MORE RESEARCH ON THIS
 '''
-
-
-
-
-'''
-------------------------------------------------------------
-CATEGORICAL NONPARAMETRIC TESTING
-
-CHI SQUARES
-'''
-
