@@ -170,3 +170,35 @@ final standard error = sd of all means
 
 ^^^ DO MORE RESEARCH ON THIS
 '''
+
+
+
+'''
+---------------------------------------------------
+CHAPTER 13 NONPARAMETRIC CATEGORICAL TESTING
+
+
+'''
+
+'''
+---------------
+MULTINOMIAL EXPERIMENT
+
+properties: 
+n identical trials
+k possible outcomes to each trial (usually classes, categories, or cells)
+probabilities always equal 1 
+trials are independent
+
+basically binomial distribution but has mor ethan 2 categories
+'''
+
+#EX LEVEL OF EDUCATION BY EACH CANADIAN ACTORS
+#categories: some hs, completed hs, some college, undergrad degree, and grad degree
+ #   ^ 5 categories
+ # 1 qualitative variable (# of actors)
+
+obs = [30,25,20,5,6,4]
+
+
+print(spy.chisquare(obs))
