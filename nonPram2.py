@@ -1,8 +1,11 @@
+print("hello")
+
 import numpy as npy
 import pandas as pd
 import scipy.stats as spy
 import statsmodels.stats as sm
 from matplotlib import pyplot as plt
+from math import sqrt
 
 # SIGN TEST IN PYTHON ( 1 sample)
 
@@ -208,12 +211,17 @@ obs = [30,25,20,5,6,4]
 '''
 CHI SQUARE CONTINGENCY TABLE
 
+IF THE TABLE IS A 2X2 YOU CAN USE FISHERS EXACT TEST
+
+expected for Eij (i is row, j is column) = (row total * col total)/all total
+
+
 conditions:
 1: samples are randomly sampled
 2: n>= 5 for every sample
 
 hypotheses:
-H0: 2 classifications are independent
+H0: 2 classifications are independent (usually row and column)
 Ha: 2 classifications are dependent
 2 qualitative variables
 '''
@@ -227,10 +235,9 @@ def sum(array2d):
      
 
 
-print("SUM OF A 2D ARRAY IS:",sum(data), sep='\n')
+print("SUM OF A 2D ARRAY IS:", sep='\n')
       
 print(spy.chi2_contingency(data))
-print(spy.fisher_exact(data))
 
 
 extraci = npy.array([[9,17,7],[30,25,12]])
@@ -239,6 +246,17 @@ print(spy.chi2_contingency(extraci))
 
 #is there an association between categorical var a and b?
 id = npy.array([[95,41],[50,114]])
-#print(spy.chi2_contingency(id, correction = True))
+print(spy.chi2_contingency(id, correction = True))
 #SIMULATED P VALUE
 print("fijsiofjhiodjhiudfhgufiughduk")
+
+print("chi2 critical value: ", spy.chi2.ppf(1-0.05,12-1)) 
+#confidence = (1-alpha) and df = (col-1)*(row-1)
+
+
+def chi2_interval(givenn, samplen, confidence=0.95,):
+    muP= givenn/float(samplen)
+    std= sqrt(muP*(1-muP)/samplen) #estimate of std based on p
+    return spy.norm.interval(confidence=confidence, loc=muP, scale=std)
+
+print(chi2_interval(30,60))
