@@ -218,6 +218,17 @@ Ha: 2 classifications are dependent
 2 qualitative variables
 '''
 data = npy.array([[39,25],[54,70]])
+
+def expected(array2d):
+     try:
+          return sum([sum(x) for x in zip(*array2d)])
+     except:
+          return "not 2d array"
+     
+     
+
+print("THE EXPECTED VALUES AARE",expected(data), sep='\n')
+      
 print(spy.chi2_contingency(data))
 print(spy.fisher_exact(data))
 
