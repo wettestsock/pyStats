@@ -202,3 +202,25 @@ obs = [30,25,20,5,6,4]
 
 
 print(spy.chisquare(obs))
+
+
+#-------------------
+'''
+CHI SQUARE CONTINGENCY TABLE
+
+conditions:
+1: samples are randomly sampled
+2: n>= 5 for every sample
+
+hypotheses:
+H0: 2 classifications are independent
+Ha: 2 classifications are dependent
+2 qualitative variables
+'''
+data = npy.array([[39,25],[54,70]])
+print(spy.chi2_contingency(data))
+print(spy.fisher_exact(data))
+
+
+extraci = npy.array([[9,17,7],[30,25,12]])
+print(spy.chi2_contingency(extraci))
