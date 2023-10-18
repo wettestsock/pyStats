@@ -32,6 +32,7 @@ print(spy.binomtest(k=8-7,n=8, alternative='less'))  # k = # of measurements tha
 
 '''
  INDEPENDENT SAMPLES WILCOXON TEST
+ WILCOXON RANK SUM TEST
 
  D = probability distribution
  HYPOTHESES:
@@ -58,6 +59,7 @@ print(spy.ranksums(S13,S17,alternative='less'))
 -------------------
 
  PAIRED WILCOXON TEST
+ WILCOXON SIGNED RANK TEST
 
  hypotheses:
  H0: D1-D2 or D1 is identical to D2
@@ -260,3 +262,20 @@ def chi2_interval(givenn, samplen, confidence=0.95,):
     return spy.norm.interval(confidence=confidence, loc=muP, scale=std)
 
 print(chi2_interval(30,60))
+
+
+'''
+REVIEW THE EXAM 2
+for wilcoxon signed rank test-
+
+T- = sum of positive ranks of difference between sample 1- 2
+T+ = sum of negative ranks of difference between samples 1-2
+^ test statistics 
+
+rejection region = less than critical value
+
+when looking at table, EXCLUDE ZERO DIFFERENCES !!!
+n = # of differences that arent zero
+
+
+'''
