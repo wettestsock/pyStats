@@ -271,11 +271,31 @@ for wilcoxon signed rank test-
 T- = sum of positive ranks of difference between sample 1- 2
 T+ = sum of negative ranks of difference between samples 1-2
 ^ test statistics 
+NOTE: ranks are absolute values
+NOTE: exclude zeros
+
 
 rejection region = less than critical value
 
 when looking at table, EXCLUDE ZERO DIFFERENCES !!!
 n = # of differences that arent zero
 
-
 '''
+
+def ranks(input):
+     out = []
+     input.sort()
+     rank = 0
+     num = input[0]
+     for i in input:
+          if num==i:
+               rank+=1
+          else:
+               num=i
+
+
+     print(out[0])
+
+
+ranks([4,2,4,0,1])
+
