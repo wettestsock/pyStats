@@ -122,8 +122,7 @@ RANDOMIZED BLOCK DESIGN
 FRIEDSMAN SQUARE TEST
 
 reduces variability as compared to completely randomized
-df = k+1
-     ^^^^^ df is +1 instead of -1
+df = k-1
 
 CONDITIONS:
 treatments randomly assigned to experimental units within the blocks
