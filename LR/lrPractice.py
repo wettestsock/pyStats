@@ -1,5 +1,5 @@
 import numpy as npy
-import numpy.array as arr
+from numpy import array as arr
 import pandas as pd
 import scipy.stats as spy
 import matplotlib.pyplot as plt
@@ -25,4 +25,9 @@ print(spy.linregress(x,y))
 plt.scatter(x,y)
 reg = spy.linregress(x,y)
 plt.axline(xy1=(0,reg.intercept), slope =reg.slope)
+plt.show()
+
+
+
+plt.hist(x, bins = 20)
 plt.show()
