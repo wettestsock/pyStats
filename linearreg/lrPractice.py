@@ -48,7 +48,12 @@ assumed mean of the error is zero, hope its zero
 
 expected value of y = B0 + B1X
 |E|Y| or y^hat (AP STATS REFERENCE)
+y^hat = a+bx         MRS MAGULICKKKKKKKKKKKKKKKKKKKKKKK
 
+
+LSRL TABLE IS LITERALLY ANOVA TABLE
+
+slope isnt really meaningful
 
 
 '''
