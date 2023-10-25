@@ -4,7 +4,9 @@ import pandas as pd
 import scipy.stats as spy
 import matplotlib.pyplot as plt
 
-
+#annoying
+def pp():
+    print('\n\n')
 '''
 SIMPLE LINEAR REGRESSION
 H0: theres no slope (x has no effect on y)
@@ -26,7 +28,7 @@ plt.scatter(x,y)
 reg = spy.linregress(x,y)
 plt.axline(xy1=(0,reg.intercept), slope =reg.slope)
 plt.show()
-
+print('\n\n')
 
 '''
 PROBABILISTIC MODELS
@@ -52,8 +54,34 @@ y^hat = a+bx         MRS MAGULICKKKKKKKKKKKKKKKKKKKKKKK
 
 
 LSRL TABLE IS LITERALLY ANOVA TABLE
+one way anova gives same p value as lsrl 
 
 slope isnt really meaningful
 
+df for parameter estimate = n - # of parameters (intercept and slope)
+df is n-2 
 
 '''
+
+
+#NUMPY ARRAYS ARE GOOD, A LOT MORE CONTROL OVER DATA
+x = arr([6,7,1,10,6,4,8])
+y=arr([2,9,4,9,3,10,7])
+
+
+
+
+pp()
+
+reg = spy.linregress(x,y)
+print(pow(x,2))
+print(x*y)
+print(sum(x))
+pp()
+
+print(reg)
+
+#MAKING THE GRAPH
+plt.scatter(x,y)
+plt.axline(xy1=(0, reg.intercept), slope = reg.slope)
+plt.show()
