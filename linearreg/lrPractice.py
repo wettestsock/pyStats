@@ -28,6 +28,27 @@ plt.axline(xy1=(0,reg.intercept), slope =reg.slope)
 plt.show()
 
 
+'''
+PROBABILISTIC MODELS
 
-plt.hist(x, bins = 20)
-plt.show()
+model with exact relationship between variables
+
+y = 3x, y = 10x-2, etc
+there will always be some unexplained variation in the data caused by random phenomena
+
+general model :
+Y = deterministic component + random error
+
+first order probabilistic model:
+y = B0 + B1X + e
+B0: y intercept
+B1: slope
+e: random error component
+assumed mean of the error is zero, hope its zero
+
+expected value of y = B0 + B1X
+|E|Y| or y^hat (AP STATS REFERENCE)
+
+
+
+'''
