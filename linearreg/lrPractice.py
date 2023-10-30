@@ -85,3 +85,17 @@ print(reg)
 plt.scatter(x,y)
 plt.axline(xy1=(0, reg.intercept), slope = reg.slope)
 plt.show()
+
+# SSxy
+
+SSxy = sum(x*y)-((sum(x)*sum(y))/len(x))
+
+# SSxx 
+
+SSxx = sum(pow(x,2))-(pow(sum(x),2)/len(x))
+
+# x bar = sum of x / n
+# y bar = sum of y / n
+
+xbar = sum(x)/len(x)
+ybar = sum(y)/len(y)
