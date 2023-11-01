@@ -3,6 +3,8 @@ from numpy import array as arr
 import pandas as pd
 import scipy.stats as spy
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
+import seaborn as sns
 
 #annoying
 def pp():
@@ -27,8 +29,11 @@ print(spy.linregress(x,y))
 plt.scatter(x,y)
 reg = spy.linregress(x,y)
 plt.axline(xy1=(0,reg.intercept), slope =reg.slope)
+plt.axline(xy1=(0,reg.intercept + 2*reg.stderr), slope =reg.slope)
+plt.axline(xy1=(0,reg.intercept - 2*reg.stderr), slope =reg.slope)
 plt.show()
-print('\n\n')
+pp()
+
 
 '''
 PROBABILISTIC MODELS
@@ -73,7 +78,7 @@ y=arr([2,9,4,9,3,10,7])
 
 pp()
 
-reg = spy.linregress(x,y)
+reg2 = spy.linregress(x,y)
 print(pow(x,2))
 print(x*y)
 print(sum(x))
@@ -83,9 +88,9 @@ print(reg)
 
 #MAKING THE GRAPH
 plt.scatter(x,y)
-plt.axline(xy1=(0, reg.intercept), slope = reg.slope)
+plt.axline(xy1=(0, reg2.intercept), slope = reg2.slope)
+plt.axline(xy1=(0, reg2.intercept+2*reg.stderr), slope = reg2.slope)
 plt.show()
-
 # SSxy
 
 SSxy = sum(x*y)-((sum(x)*sum(y))/len(x))
@@ -99,3 +104,10 @@ SSxx = sum(pow(x,2))-(pow(sum(x),2)/len(x))
 
 xbar = sum(x)/len(x)
 ybar = sum(y)/len(y)
+
+# mean of x and y = pivot point
+#theres a confidence interval for the slope
+# hourglass shape pivoting around the mean
+
+# 95% CI for mean (model)
+# and 95% CI for data points
