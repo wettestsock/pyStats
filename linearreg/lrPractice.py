@@ -139,3 +139,4 @@ plt.show()
 plt.scatter(h.iloc[:,0], h.iloc[:,1])
 plt.axline(xy1=(0, output.intercept), slope=(output.slope))
 plt.show()
+
