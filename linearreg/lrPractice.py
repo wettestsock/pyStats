@@ -4,7 +4,9 @@ import pandas as pd
 import scipy.stats as spy
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
+from statsmodels.formula.api import ols
 import seaborn as sns
+
 
 #annoying
 def pp():
@@ -111,3 +113,24 @@ ybar = sum(y)/len(y)
 
 # 95% CI for mean (model)
 # and 95% CI for data points
+
+# is independent, y is dependent
+print(x,y)
+h = pd.read_csv('linearreg\AP_Top_25_2018.csv', usecols=['Total Yards', 'Passing Yards'])
+print(h.iloc[:, 0])
+output = spy.linregress(h.iloc[:,0],h.iloc[:,1])
+print(output)
+plt.hist(h.iloc[:,0])
+plt.show()
+
+sns.residplot(x='Total Yards', y='Passing Yards', data = h)
+plt.show()
+
+
+# SEABORN IS A GODSEND
+sns.regplot(data = h, x='Total Yards', y='Passing Yards')
+plt.show()
+
+plt.scatter(h.iloc[:,0], h.iloc[:,1])
+plt.axline(xy1=(0, output.intercept), slope=(output.slope))
+plt.show()
