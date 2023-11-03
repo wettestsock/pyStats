@@ -120,15 +120,20 @@ h = pd.read_csv('linearreg\AP_Top_25_2018.csv', usecols=['Total Yards', 'Passing
 print(h.iloc[:, 0])
 output = spy.linregress(h.iloc[:,0],h.iloc[:,1])
 print(output)
-plt.hist(h.iloc[:,0])
 plt.show()
 
 sns.residplot(x='Total Yards', y='Passing Yards', data = h)
 plt.show()
+sns.histplot(h, x='Total Yards')
+plt.show()
 
 
+
+
+# regression plot
 # SEABORN IS A GODSEND
-sns.regplot(data = h, x='Total Yards', y='Passing Yards')
+out = sns.regplot(data = h, x='Total Yards', y='Passing Yards')
+print(out)
 plt.show()
 
 plt.scatter(h.iloc[:,0], h.iloc[:,1])
