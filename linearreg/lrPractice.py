@@ -116,15 +116,15 @@ ybar = sum(y)/len(y)
 
 # is independent, y is dependent
 print(x,y)
-h = pd.read_csv('linearreg\AP_Top_25_2018.csv', usecols=['Total Yards', 'Passing Yards'])
+h = pd.read_csv('linearreg\AP_Top_25_2018.csv', usecols=['Passing Yards/Game', 'Points/Game'])
 print(h.iloc[:, 0])
 output = spy.linregress(h.iloc[:,0],h.iloc[:,1])
 print(output)
 plt.show()
 
-sns.residplot(x='Total Yards', y='Passing Yards', data = h)
+sns.residplot(x='Passing Yards/Game', y='Points/Game', data = h)
 plt.show()
-sns.histplot(h, x='Total Yards')
+sns.histplot(h, x='Passing Yards/Game')
 plt.show()
 
 
@@ -132,11 +132,13 @@ plt.show()
 
 # regression plot
 # SEABORN IS A GODSEND
-out = sns.regplot(data = h, x='Total Yards', y='Passing Yards')
+out = sns.regplot(data = h, x='Passing Yards/Game', y='Points/Game')
 print(out)
 plt.show()
 
 plt.scatter(h.iloc[:,0], h.iloc[:,1])
 plt.axline(xy1=(0, output.intercept), slope=(output.slope))
 plt.show()
+
+
 
