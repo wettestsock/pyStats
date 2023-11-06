@@ -68,6 +68,11 @@ slope isnt really meaningful
 df for parameter estimate = n - # of parameters (intercept and slope)
 df is n-2 
 
+
+NOTE:
+x is independent variable (explanatory variable), input
+y is dependent variable (response variable), output
+
 '''
 
 
@@ -139,6 +144,8 @@ plt.show()
 plt.scatter(h.iloc[:,0], h.iloc[:,1])
 plt.axline(xy1=(0, output.intercept), slope=(output.slope))
 plt.show()
+
+
 
 
 
