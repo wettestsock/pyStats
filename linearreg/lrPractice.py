@@ -127,8 +127,6 @@ output = spy.linregress(h.iloc[:,0],h.iloc[:,1])
 print(output)
 plt.show()
 
-sns.residplot(x='Passing Yards/Game', y='Points/Game', data = h)
-plt.show()
 sns.histplot(h, x='Passing Yards/Game')
 plt.show()
 
@@ -147,5 +145,27 @@ plt.show()
 
 
 
+sns.residplot(x=h.columns[0], y=h.columns[1], data = h)
+plt.show()
 
+
+
+df = pd.DataFrame({'age':[16,17,18,19,20,21,22,23,24,25],'insurance':[7203,5924,5242,3874,3532,2864,2593,2415,2267,2010]})
+dfout = spy.linregress(df.iloc[:,0], df.iloc[:,1])
+
+sns.regplot(df, x=df.columns[0], y = df.columns[1])
+plt.show()
+
+
+'''
+WHAT MAKES LR NOT LINERA
+
+1 - regression function isnt linear
+2 - error terms dont have constant variance
+3 - error tersm arent independent
+4 - model fits all but one or a few outlier observations
+5 - error tersm arent normally distributed
+6 - 1 or several predictor vars haev been omitted
+
+'''
 
