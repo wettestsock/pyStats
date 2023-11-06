@@ -153,12 +153,17 @@ plt.show()
 df = pd.DataFrame({'age':[16,17,18,19,20,21,22,23,24,25],'insurance':[7203,5924,5242,3874,3532,2864,2593,2415,2267,2010]})
 dfout = spy.linregress(df.iloc[:,0], df.iloc[:,1])
 
+print(df.iloc[:,1])
+print([[dfout.intercept+ dfout.slope*i] for i in df.iloc[:,0]])
+
 sns.regplot(df, x=df.columns[0], y = df.columns[1])
 plt.show()
 
 
 '''
 WHAT MAKES LR NOT LINERA
+
+NOTE: will make non linear relationships in methods 3
 
 1 - regression function isnt linear
 2 - error terms dont have constant variance
