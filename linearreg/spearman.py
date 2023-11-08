@@ -40,15 +40,12 @@ basically gives the R value (in a linear regression)
 
 #ex
 
-ex1 = df({'on-time': [87.3, 79.4, 86.5, 79.8, 76.0, 91.1,
-          75.0, 82.3, 80.8, 74.3, 81.7, 76.2], 
-'complaints': [0.50, 2.49, 0.68, 0.51, 5.94, 1.16,
-          0.75, 0.49, 0.47, 6.74, 2.27, 1.85]})
-
+ex1 = df({'on-time': [87.3, 79.4, 86.5, 79.8, 76.0, 91.1,75.0, 82.3, 80.8, 74.3, 81.7, 76.2], 
+'complaints': [0.50, 2.49, 0.68, 0.51, 5.94, 1.16,0.75, 0.49, 0.47, 6.74, 2.27, 1.85]})
 
 #print(ex1.iloc[:(len(ex1.index)//2)])
 print(ex1)
 print(spy.spearmanr(ex1.iloc[:,0], ex1.iloc[:,1], alternative='less'))
 # p value isnt that necessary were only looking at the test statistic (r)
-print('At the 5% level of significance, we see a moderate negative relationship in the ranking between x and y because r = -0.556')
+print('At the 5 percent level of significance, we see a moderate negative relationship in the ranking between x and y because r = -0.556')
 print('as on time percentage goes up, there is a trend for the complaints is downward')
