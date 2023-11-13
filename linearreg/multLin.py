@@ -9,6 +9,9 @@ import seaborn as sns
 from math import sqrt
 
 '''
+PREDICTS Y BY X 
+
+
 MULTIPLE LINEAR REGRESSION
 
 y = B0 + B1x1 + B2x2 ... Bkxk + e
@@ -22,6 +25,11 @@ random errors are independent
 
 
 df = n-2
+
+note: confidence interval for regression and t test will be the same
+with categorical variables can dummy code into a t test
+
+
 '''
 
 #data to practice on
@@ -31,7 +39,7 @@ bids = data['NUMBIDS']
 salesprice = data['PRICE']
 age = data['AGE']
 print(spy.linregress(bids, salesprice)) #predict salesprice by bids
-print(spy.linregress(age+bids, salesprice)) # predict salesprice by age
+print(spy.linregress(age, salesprice)) # predict salesprice by age
 
 sns.histplot(data, x='NUMBIDS5')
 plt.show()

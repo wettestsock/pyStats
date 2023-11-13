@@ -13,6 +13,9 @@ def pp():
     print('\n\n')
 '''
 SIMPLE LINEAR REGRESSION
+
+Y PREDICTS X 
+
 H0: theres no slope (x has no effect on y)
 Ha: theres a slope (x has effect on y)
 
