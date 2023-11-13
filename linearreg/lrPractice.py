@@ -174,3 +174,28 @@ NOTE: will make non linear relationships in methods 3
 
 '''
 
+
+'''
+SLOPE -
+B1 (slope) = SSxy/SSxx 
+B0 (y intercept) = predicted y - slope * predicted x
+
+SSE = SSyy - B1 * SSxy
+S^2 = SSE/ n-2
+
+conf int. = y^hat +- t a/2 * s * sqrt(1/n + (xp - x predicted)^2/SSxx)
+t a/2 with n-2 df 
+'''
+
+'''
+to predict avergae for a single point - use prediction interval
+to predict mean of average for all points - use confidence interval
+
+'''
+
+data = pd.DataFrame({'x':[50,45,50,60,50,60,55,60,50,50,70,45,40,40,50], 'y':[77.51,72.03,48.79,41.93,68.15,54.11,57.09,20.79,60.36,68.15,28.87,72.03,35.06,33.95,43.93] })
+
+
+out = sns.regplot(data, x='x', y='y')
+print(spy.linregress(x=data.iloc[:,0], y = data.iloc[:,1]))
+plt.show()
