@@ -20,6 +20,8 @@ variance = o^2 , constant variance
 normal probability distribution
 random errors are independent
 
+
+df = n-2
 '''
 
 #data to practice on
@@ -27,7 +29,9 @@ data = pd.read_csv('linearreg\grandfatherclock.csv')
 
 bids = data['NUMBIDS']
 salesprice = data['PRICE']
-print(spy.linregress(bids, salesprice).rvalue)
+age = data['AGE']
+print(spy.linregress(bids, salesprice)) #predict salesprice by bids
+print(spy.linregress(age+bids, salesprice)) # predict salesprice by age
 
-sns.regplot(data = data, x='NUMBIDS', y='PRICE')
+sns.histplot(data, x='NUMBIDS5')
 plt.show()
