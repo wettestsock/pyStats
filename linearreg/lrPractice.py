@@ -124,7 +124,7 @@ ybar = sum(y)/len(y)
 
 # is independent, y is dependent
 print(x,y)
-h = pd.read_csv('linearreg\AP_Top_25_2018.csv', usecols=['Passing Yards/Game', 'Points/Game'])
+h = pd.read_csv('AP_Top_25_2018.csv', usecols=['Passing Yards/Game', 'Points/Game'])
 print(h.iloc[:, 0])
 output = spy.linregress(h.iloc[:,0],h.iloc[:,1])
 print(output)
@@ -198,7 +198,8 @@ to predict mean of average for all points - use confidence interval
 
 data = pd.DataFrame({'x':[50,45,50,60,50,60,55,60,50,50,70,45,40,40,50], 'y':[77.51,72.03,48.79,41.93,68.15,54.11,57.09,20.79,60.36,68.15,28.87,72.03,35.06,33.95,43.93] })
 
+out = spy.linregress(data.iloc[:,0], data.iloc[:,1])
+print(out, out.slope-2*out.intercept_stderr, out.slope+2*out.intercept_stderr)
 
 out = sns.regplot(data, x='x', y='y')
-print(spy.linregress(x=data.iloc[:,0], y = data.iloc[:,1]))
 plt.show()
