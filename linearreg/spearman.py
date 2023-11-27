@@ -49,3 +49,10 @@ print(spy.spearmanr(ex1.iloc[:,0], ex1.iloc[:,1], alternative='less'))
 # p value isnt that necessary were only looking at the test statistic (r)
 print('At the 5 percent level of significance, we see a moderate negative relationship in the ranking between x and y because r = -0.556')
 print('as on time percentage goes up, there is a trend for the complaints is downward')
+
+ex2 = df({'x':[45,50,23,24,17],'y':[44,52,65,22,56]})
+print(spy.spearmanr(ex2.iloc[:,0], ex2.iloc[:,1]))
+
+ex3 = df({'hr':[55,52,68,70,75,76,77,83],'vo':[147,157,160,180,180,182,193,199]})
+print(spy.spearmanr(ex3.iloc[:,0], ex3.iloc[:,1]))
+print(sum(pow(arr([2,1,3,4,5,6,7,8])-arr([1,2,3,4.5,4.5,6,7,8]),2)))
