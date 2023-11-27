@@ -39,7 +39,17 @@ bids = data['NUMBIDS']
 salesprice = data['PRICE']
 age = data['AGE']
 print(spy.linregress(bids, salesprice)) #predict salesprice by bids
-print(spy.linregress(age, salesprice)) # predict salesprice by age
+print(spy.linregress(age
+, salesprice)) # predict salesprice by age
 
 sns.histplot(data, x='NUMBIDS5')
 plt.show()
+
+'''
+interpolation - easy
+predicting something in the present
+
+extrapolation - hard
+predicting something in the future
+
+'''
