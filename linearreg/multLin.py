@@ -53,3 +53,22 @@ extrapolation - hard
 predicting something in the future
 
 '''
+
+
+'''
+note: explanatory variables in mult LR just test for if theyre significant for the response
+not whether or not interaction between the variables exists 
+(do not conduct t tests) if the result is significant
+(B1 + B3x2) represents rate of change
+
+
+qualitative (categorical) variables can also be included in multiple linear regression
+levels:
+dummy variable: coding qualitative variables as quantitative 
+ex:
+x = 1 if male 0 if female
+x = 1 if (gender == 'male') else 0
+
+
+TODO: LEARN LINEAR REGRESSION 
+'''
