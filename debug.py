@@ -110,3 +110,4 @@ name = input("type ur name: ")
 print(name)
 
 
+print('I GOT LINUX')
